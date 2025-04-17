@@ -36,10 +36,29 @@ class Student:
             status = "True"
         else:
             status = "False"
-        print(f"Student ID: {self.student_id}")
-        print(f"Name: {self.name}")
-        print(f"Department: {self.department}")
-        print(f"Status: {status}")
+        print(f"Student ID: {self.student_id}, Name: {self.name}, Department: {self.department}, Status: {status}")
+
+
+# Menu System
+def menu():
+    while True:
+        print("---> Student Management System <---")
+        print("1. View All Students")
+        print("2. Enroll Student")
+        print("3. Drop Student")
+        print("4. Exit")
+        
+        option = input("enter your option (1-4): ")
+
+        if option == "1":
+            if not StudentDatabase.student_list:
+                print("No students available now")
+            else:
+                for student in StudentDatabase.student_list:
+                    student.view_student_info()
+        
+
+
 
 
 s1 = Student(1, "Rahim", "EEE")
@@ -47,9 +66,11 @@ s2 = Student(2, "Karim", "CSE")
 
 
 s1.enroll_student()
-s2.enroll_student()
+# s2.enroll_student()
 
-s2.drop_student()
+# s2.drop_student()
 
-s1.view_student_info()
-s2.view_student_info()
+# s1.view_student_info()
+# s2.view_student_info()
+
+menu()

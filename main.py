@@ -57,7 +57,32 @@ def menu():
                 for student in StudentDatabase.student_list:
                     student.view_student_info()
         
+        elif option == "2":
+            print("Fill up this question for enroll-")
+            student_id = int(input("Enter the student id: "))
+            name = input("Enter the student's name: ")
+            department = input("Enter the student's department: ")
+            new_student = Student(student_id, name, department)
+            new_student.enroll_student()
 
+        elif option == "3":
+            print("Fill up this question for drop-")
+            student_id = int(input("Enter the student ID: "))
+            student_found = False
+            for student in StudentDatabase.student_list:
+                if student.student_id == student_id:
+                    student.drop_student()
+                    student_found = True
+                    break
+            if not student_found:
+                print("Student ID not found!")
+
+        elif option == "4":
+            print("Logout from the system.")
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
 
 
 
@@ -65,7 +90,7 @@ s1 = Student(1, "Rahim", "EEE")
 s2 = Student(2, "Karim", "CSE")
 
 
-s1.enroll_student()
+# s1.enroll_student()
 # s2.enroll_student()
 
 # s2.drop_student()

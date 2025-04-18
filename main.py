@@ -7,39 +7,38 @@ class StudentDatabase:
         cls.student_list.append(student)
 
 class Student:
-
     def __init__(self, student_id, name, department):
-        self.student_id =student_id
-        self.name= name
-        self.department = department
-        self.is_enrolled = False
-
+        self.__student_id = student_id
+        self.__name = name
+        self.__department = department
+        self.__is_enrolled = False
         StudentDatabase.add_student(self)
 
-
     def enroll_student(self):
-        if not self.is_enrolled:
-            self.is_enrolled = True
-            print(f"{self.name} has been enrolled successfully.")
+        if not self.__is_enrolled:
+            self.__is_enrolled = True
+            print(f"{self.__name} has been enrolled successfully.")
         else:
-            print(f"{self.name} is already enrolled.")
+            print(f"{self.__name} is already enrolled.")
 
     def drop_student(self):
-        if self.is_enrolled:
-            self.is_enrolled = False
-            print(f"{self.name} has been dropped.")
+        if self.__is_enrolled:
+            self.__is_enrolled = False
+            print(f"{self.__name} has been dropped.")
         else:
-            print(f"{self.name} is not enrolled.")
+            print(f"{self.__name} is not enrolled.")
 
     def view_student_info(self):
-        if self.is_enrolled:
+        if self.__is_enrolled:
             status = "True"
         else:
             status = "False"
-        print(f"Student ID: {self.student_id}, Name: {self.name}, Department: {self.department}, Status: {status}")
+        print(f"Student ID: {self.__student_id}, Name: {self.__name}, Department: {self.__department}, Status: {status}")
+
+    def get_student_id(self):
+        return self.__student_id
 
 
-# Menu System
 def menu():
     while True:
         print("---> Student Management System <---")
@@ -70,7 +69,7 @@ def menu():
             student_id = int(input("Enter the student ID: "))
             student_found = False
             for student in StudentDatabase.student_list:
-                if student.student_id == student_id:
+                if student.get_student_id() == student_id:
                     student.drop_student()
                     student_found = True
                     break
@@ -85,17 +84,7 @@ def menu():
             print("Invalid choice. Please try again.")
 
 
-
 s1 = Student(1, "Rahim", "EEE")
 s2 = Student(2, "Karim", "CSE")
-
-
-# s1.enroll_student()
-# s2.enroll_student()
-
-# s2.drop_student()
-
-# s1.view_student_info()
-# s2.view_student_info()
 
 menu()
